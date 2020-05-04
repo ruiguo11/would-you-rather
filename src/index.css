@@ -11,3 +11,42 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+
+.horizontal-center {
+  margin: 0;
+  position: absolute;
+  left: 50%;
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+
+
+/*
+The following css code are from https://www.w3jar.com/react-navigation-example-with-react-router-dom/ 
+*/
+.navBar ul{
+  padding: 0;
+  margin: 0;
+  display: flex;
+  list-style: none;
+  width: 100%;
+  background-color: rgb(18, 18, 19);
+}
+.navBar ul a{
+  text-decoration: none;
+  color: rgb(245, 245, 255);
+  display: block;
+  padding: 15px;
+  margin: 0 5px;
+  
+}
+.navBar ul .active, .navBar ul a:hover{
+  background: #FFF;
+  color: rgb(7, 4, 218);
+}
+.logInText{
+  color: rgb(255, 255, 255);
+  padding-right: 5px;
+}
