@@ -36,7 +36,7 @@ class App extends Component {
             <Switch>
               {authedUser === null
                 ? <Route path='/' exact component={Login} />
-                : <div>
+                : <>
                   
                     <Route path='/' exact component = {Dashboard } />
                     
@@ -44,7 +44,7 @@ class App extends Component {
                     <Route path='/add' component={NewQuestion} />
                     <Route path='/leaderboard' exact component={Leaderboard} />
                    
-                  </div>
+                  </>
                   
               }
               <Route component={PageNotFound} />

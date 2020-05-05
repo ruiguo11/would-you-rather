@@ -13,9 +13,15 @@ class Dashboard extends Component{
         const currentUser = this.props.authedUser; 
         console.log('Dashboard CurrentUser', currentUser);
         const unAnsweredQuestion = questions.filter(questions => (!questions.optionOne.votes.includes(currentUser) && !questions.optionTwo.votes.includes(currentUser)));
+        const unAnsweredSorted = unAnsweredQuestion.sort((a, b) => b.timestamp - a.timestamp);
+        console.log('Dashboard unswered question', unAnsweredSorted); 
+       
+       
+       
         const answeredQuestion = questions.filter(questions => (questions.optionOne.votes.includes(currentUser) ||questions.optionTwo.votes.includes(currentUser)));
-
-        console.log('Dashboard unswered question', unAnsweredQuestion);
+        const answeredSorted = answeredQuestion.sort((a, b) => b.timestamp - a.timestamp);
+       
+       
         
 
         return (
@@ -24,12 +30,12 @@ class Dashboard extends Component{
                     <Tab eventKey="unanswered" title={
                         <span>Unanswered Questions 
                             <span> </span> 
-                            <Badge pill variant="warning">{unAnsweredQuestion.length}</Badge>
+                            <Badge pill variant="warning">{unAnsweredSorted.length}</Badge>
                         </span>
                         }
                         >  
                    
-                        {unAnsweredQuestion.map((question) => (
+                        {unAnsweredSorted.map((question) => (
                                 <ul key = {question.id}>
                                     <Question id = {question.id}/>
                                 </ul>
@@ -38,11 +44,11 @@ class Dashboard extends Component{
                     <Tab eventKey="Answered" title={
                         <span>Answered Questions  
                             <span> </span> 
-                            <Badge pill variant="warning">{answeredQuestion.length}</Badge>
+                            <Badge pill variant="warning">{answeredSorted.length}</Badge>
                         </span>
                         }
                         >  
-                        {answeredQuestion.map((question) => (
+                        {answeredSorted.map((question) => (
                                 <ul key ={question.id}>
                                     <Question id = {question.id}/>
                                 </ul>
@@ -57,8 +63,7 @@ function mapStateToProps({questions, authedUser}) {
     
     return {
         questions,
-        questionIds: Object.keys(questions).sort((a,b)=> questions[b].timestamp-questions[a].timestamp), 
-        
+        questionIds: Object.keys(questions).sort((a,b)=> questions[b].timestamp-questions[a].timestamp),        
         authedUser
     }
 }

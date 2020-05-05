@@ -15,7 +15,7 @@ export class Leaderboard extends Component{
                 <ol>
                 {userList.map((user) => (
                     
-                        <li>
+                        <li key={user.id}>
                         <Card border="info" style={{ width: '32rem' , marginBottom: 20}}>
                         <Card.Body>
                             <Card.Title className="text-center" >{user.name}</Card.Title>
