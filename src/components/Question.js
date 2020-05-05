@@ -56,7 +56,7 @@ class Question extends Component{
                     <p> {question.optionTwo.text}?</p>
                     </Col>
                     </Row>
-                    <Row onClick ={this.handleViewQuestion } md="auto">
+                    <Row onClick ={this.handleViewQuestion }>
                         <button>View Poll</button>
                     </Row>
                     

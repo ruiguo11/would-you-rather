@@ -28,7 +28,6 @@ class QuestionPage extends Component{
         
         this.props.dispatch(handlSaveAnswer(this.props.authedUser,this.props.id, this.state.answer) )
       
-       
         e.preventDefault()
         return <Redirect to='/question/${this.props.id}' />
 

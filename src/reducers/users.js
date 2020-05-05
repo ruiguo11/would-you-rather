@@ -44,15 +44,3 @@ export default function users(state={}, action){
     }
 }
 
-/*  ...users,
-          [authedUser]: {
-            ...users[authedUser],
-            answers: {
-              ...users[authedUser].answers,
-              [qid]: answer
-            }
-          }
-        }
-
-        */
-
