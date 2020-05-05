@@ -26,13 +26,12 @@ class QuestionPage extends Component{
     handleSaveAnswer = (e) =>{ 
         console.log('handleSaveAnswer', this.props.authedUser, this.state.answer, this.props.id)
         
- this.props.dispatch(handlSaveAnswer(this.props.authedUser,this.props.id, this.state.answer)  )
+        this.props.dispatch(handlSaveAnswer(this.props.authedUser,this.props.id, this.state.answer) )
       
        
         e.preventDefault()
-         this.setState(() => ({
-            toHome : true
-        })); 
+        return <Redirect to='/question/${this.props.id}' />
+
     }
 
 
@@ -51,6 +50,7 @@ class QuestionPage extends Component{
         if (this.state.toHome === true) {
             return <Redirect to='/' />
           }
+        
         const loggedUser = this.props.authedUser
         const question = this.props.questions[this.props.id]
         //console.log('Question page', question);
