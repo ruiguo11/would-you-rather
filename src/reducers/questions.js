@@ -17,9 +17,9 @@ export default function questions(state={}, action){
                 [question.id]: question,
             };
         case ADD_ANSWER:
-            console.log("Save question ansser reducer state", state)
+            //console.log("Save question ansser reducer state", state)
             const { authedUser,answer, qid } = action;
-            console.log('save question anwer reducer [qid]',state[qid][answer])
+           // console.log('save question anwer reducer [qid]',state[qid][answer])
             return{
                 ...state,
                 [qid]: {

@@ -30,12 +30,10 @@ class NewQuestion extends Component{
     handleSubmit = (e) =>{
         e.preventDefault()
     
-        const optionOne = this.state.optionOne
-        const optionTwo = this.state.optionTwo
         
        
         console.log('handleSubmit', this.state.optionOne, this.state.optionTwo)
-        this.props.dispatch(handleAddQuestion(this.props.authedUser, optionOne, optionTwo))      
+        this.props.dispatch(handleAddQuestion(this.props.authedUser, this.state.optionOne, this.state.optionTwo) )   
         this.setState(() => ({    
             optionOne: '', 
             optionTwo: '',

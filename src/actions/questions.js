@@ -1,4 +1,4 @@
-import {saveQuestion, saveQuestionAnswer} from '../utils/api'
+import {_saveQuestion, _saveQuestionAnswer} from '../utils/_DATA'
 import { showLoading, hideLoading } from 'react-redux-loading'
 import {addUserQuestion, addUserAnswer} from '../actions/users'
 
@@ -13,7 +13,7 @@ export function addQuestion(question){
     console.log('action addQuestion', question)
     return{
         type: ADD_QUESTION,
-        question,
+       question
     }
 
 }
@@ -36,16 +36,16 @@ export function addAnswer(authedUser, qid, answer){
 }
 
 
-export function handleAddQuestion(authedUser, optionOne, optionTwo){
-    console.log('handleAddQuestion',authedUser,optionOne, optionTwo)
+export function handleAddQuestion(authedUser, optionOneText,optionTwoText){
+   // console.log('handleAddQuestion',authedUser,optionOneText, optionTwoText )
     return(dispatch) =>{
         
         dispatch(showLoading())
 
-        return saveQuestion({
+        return _saveQuestion({
             author: authedUser,
-            optionOne: optionOne,
-            optionTwo: optionTwo
+            optionOneText,
+            optionTwoText
         })
         .then((question)=>{dispatch(addQuestion(question));
                 dispatch(addUserQuestion( question)) ;
@@ -56,12 +56,12 @@ export function handleAddQuestion(authedUser, optionOne, optionTwo){
 
 
 export function handlSaveAnswer(authedUser, qid, answer,){
-    console.log('handleSaveAnswer function', authedUser,qid, answer)
+   // console.log('handleSaveAnswer function', authedUser,qid, answer)
   
     return(dispatch) =>{
         dispatch(showLoading())
         
-        return saveQuestionAnswer({
+        return _saveQuestionAnswer({
             authedUser: authedUser,
             answer: answer,
             qid: qid

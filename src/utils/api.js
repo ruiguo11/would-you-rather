@@ -36,14 +36,8 @@ import {
       questions,
     }))
   }
-export function saveQuestion(info){
-  console.log("saveQuestion api", info)
-  return _saveQuestion(info)
-}
-export function saveQuestionAnswer(info){
-  console.log("saveQuestionAnswer", info)
-  return _saveQuestionAnswer(info)
-}
+
+
 export function getInitialUsers(){
   return Promise.all([
     _getUsers()
