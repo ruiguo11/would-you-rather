@@ -1,8 +1,8 @@
-## Would you rather
-This project was the second project for Udacity React nanodegree 
+# Would you rather
+This project was the second project for Udacity React nanodegree.
+It's built with React, Redux, React Router, & Redux Thunk.
 
-
-In the project directory, you can run:
+## Installation:
 
 ### npm install or yarn install
 
