@@ -1,40 +1,46 @@
 import React, {Component} from 'react'
-import {handleInitialUser} from '../actions/shared'
 import {connect} from 'react-redux'
 import {setAuthedUser} from '../actions/authedUser'
 import {Card} from 'react-bootstrap'
-import {handleInitialData} from '../actions/shared'
-
-
+import {Redirect} from 'react-router-dom'
+import { withRouter } from 'react-router';
 
 
 export class Login extends Component{
     state= {
         authedUser : '',
-        loginUser : ''
+        loginUser : '',
+        redirectToReferrer: false
     };
     
-    /*
-    componentDidMount(){
-        this.props.dispatch(handleInitialUser())
-    }
-    */
 
     handleLogin = (e)=>{
         console.log('authed User: ', e)
         this.props.dispatch(setAuthedUser(e))
         this.setState(() =>({
             loginUser: e,
+            redirectToReferrer: true
         }));
-        
+    
         
     }
     render(){       
         const users = this.props.users
-        console.log('Login component users ', users)
-        if( users === undefined){
-        return <div/>}
-      
+       
+        const { authedUser,location } = this.props
+        const { from } = location.state || { from: { pathname: '/' }}
+    
+
+        const { redirectToReferrer } = this.state
+        console.log('Login component users from ',  redirectToReferrer, from, this.props, authedUser)
+
+        console.log('props history', this.props.history, from)
+       
+        if (authedUser !==null){
+            
+            return <Redirect to= {from}/>
+        }
+      else{
         return(
             <div className ="login" >
                 <Card style={{ width: '30em' }}>
@@ -59,13 +65,14 @@ export class Login extends Component{
        
     }
 }
+}
 function mapStateToProps({authedUser, users}){
     return{
         authedUser, 
         users
     };
 }
-export default connect (mapStateToProps)(Login)
+export default withRouter( connect (mapStateToProps)(Login));
 
 
   

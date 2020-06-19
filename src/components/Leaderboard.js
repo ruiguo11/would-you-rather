@@ -63,7 +63,7 @@ export class Leaderboard extends Component{
 function mapStateToProps(users) {
     
     const userList = users
-    //console.log('Leaderboard mapStateToProps', userList.users)
+    console.log('Leaderboard mapStateToProps', userList.users)
     const usersWithScores = Object.values(userList.users).map(user =>({
         id: user.id,
         name: user.name,

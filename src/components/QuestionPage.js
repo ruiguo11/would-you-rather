@@ -7,9 +7,14 @@ import {Card, Button, Row, Col, ProgressBar, Container, Badge, Form } from 'reac
 import {Redirect} from 'react-router-dom'
 
 class QuestionPage extends Component{
+    constructor(props) {
+        super(props);
+    }
+    
     state={
         toHome: false,
         answer: null,
+        
     }
      toParent = (e) =>{
          e.preventDefault()
@@ -46,13 +51,13 @@ class QuestionPage extends Component{
 
     render (){ 
        
+        console.log('QuestionPage', this.props);
         if (this.state.toHome === true) {
             return <Redirect to='/' />
           }
         
         const loggedUser = this.props.authedUser
         const question = this.props.questions[this.props.id]
-        //console.log('Question page', question);
        
         
        
@@ -168,7 +173,6 @@ class QuestionPage extends Component{
     }
 }
 function mapStateToProps({authedUser, questions, users}, props){
-
     const {id} = props.match.params
 
     return{

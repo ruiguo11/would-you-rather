@@ -3,7 +3,7 @@ function generateUID () {
   }
   
 export  function formatQuestion (question, user,authedUser) {
-  console.log('formateQuestion user', user)
+  //console.log('formateQuestion user', user)
   //console.log('formateQuestion question', question)
   const {name, avatarURL } = user
     return {

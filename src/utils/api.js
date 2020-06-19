@@ -8,7 +8,7 @@ import {
 
 
   export function formatQuestion (question, user) {
-    console.log('_api formateQuestion', question, user)
+   // console.log('_api formateQuestion', question, user)
     return {
       author: {
         id: user.id,
