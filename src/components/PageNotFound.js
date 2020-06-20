@@ -6,7 +6,7 @@ class PageNotFound extends Component{
         return(
             <div>
                 <h2>Page Not Found</h2>
-                <h4>Please signin to try again</h4>
+
             </div>
         )
     }

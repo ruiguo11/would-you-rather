@@ -5,6 +5,7 @@ import {Card, Button, Row, Col, ProgressBar, Container, Badge, Form } from 'reac
 
 
 import {Redirect} from 'react-router-dom'
+import PageNotFound from './PageNotFound'
 
 class QuestionPage extends Component{
     constructor(props) {
@@ -50,15 +51,22 @@ class QuestionPage extends Component{
     }
 
     render (){ 
-       
+
+        const loggedUser = this.props.authedUser;
+        const question = this.props.questions[this.props.id];    
         console.log('QuestionPage', this.props);
+  
+        if(question===undefined){
+            return <Redirect to ='/pagenotfound'/>
+        }
+
         if (this.state.toHome === true) {
             return <Redirect to='/' />
-          }
+        }
         
-        const loggedUser = this.props.authedUser
-        const question = this.props.questions[this.props.id]
-       
+
+       console.log('Question page', question)
+
         
        
         const voteOne = question.optionOne.votes.length
@@ -66,54 +74,52 @@ class QuestionPage extends Component{
         const voteTotal = voteOne+ voteTwo
         const myVoteOne = question.optionOne.votes.includes(loggedUser)
 
-        //console.log('Votetotoal', voteTotal, voteOne, voteTwo)
-
         if (question.optionOne.votes.includes(loggedUser)||question.optionTwo.votes.includes(loggedUser) ){
-            return(
-                <div>
-                    <Card border="secondary" style = {{width:'25rem'}}>
-                        <Card.Title>{this.props.users[question.author].name} Asks</Card.Title>
-                        <Container>
-                            <Row>
-                                <Col md="auto">
-                                    <img
-                                    src = {this.props.users[question.author].avatarURL}
-                                    height="60px" width="60px"                                   
-                                    alt={'Avatar of ${question.name}'}
-                                    className = 'avatar'
-                                    /> 
-                                </Col>
-                                <Col>
-                                    <h3>Would you rather</h3>
-                                    <Card border="secondary" style = {{width:'23rem', marginBottom: 20}}>                                  
-                                        <p>{question.optionOne.text}
-                                            {myVoteOne
-                                            ?<Badge pill variant="warning">Your vote</Badge>
-                                            :null }                 
-                                         </p>
-                                        <ProgressBar now= {(voteOne/voteTotal*100)}
-                                        label = {(voteOne/voteTotal)*100}/> 
-                                        <p>{voteOne} out of {voteTotal} votes</p>
+                return(
+                    <div>
+                        <Card border="secondary" style = {{width:'25rem'}}>
+                            <Card.Title>{this.props.users[question.author].name} Asks</Card.Title>
+                            <Container>
+                                <Row>
+                                    <Col md="auto">
+                                        <img
+                                        src = {this.props.users[question.author].avatarURL}
+                                        height="60px" width="60px"                                   
+                                        alt={'Avatar of ${question.name}'}
+                                        className = 'avatar'
+                                        /> 
+                                    </Col>
+                                    <Col>
+                                        <h3>Would you rather</h3>
+                                        <Card border="secondary" style = {{width:'23rem', marginBottom: 20}}>                                  
+                                            <p>{question.optionOne.text}
+                                                {myVoteOne
+                                                ?<Badge pill variant="warning">Your vote</Badge>
+                                                :null }                 
+                                            </p>
+                                            <ProgressBar now= {(voteOne/voteTotal*100)}
+                                            label = {(voteOne/voteTotal)*100}/> 
+                                            <p>{voteOne} out of {voteTotal} votes</p>
+                                            
+                                        </Card> 
                                         
-                                    </Card> 
-                                       
-                                    <Card border="secondary" style = {{width:'23rem', marginBottom: 20}}>    
-                                        <p> {question.optionTwo.text}
-                                            {myVoteOne
-                                                ?null
-                                                : <Badge pill variant="warning">Your vote</Badge>}</p>
-                                        <ProgressBar now= {(voteTwo/voteTotal*100)}
-                                            label = {(voteTwo/voteTotal)*100}/> 
-                                            <p>{voteTwo} out of {voteTotal} votes</p>
-                                    </Card>
-                                </Col>
-                            </Row>               
-                        </Container>                  
-                    <Button className="justify-content-md-center" onClick= {this.handleGoBack}>Back</Button> 
-        
-                    </Card>
-                    
-                </div>
+                                        <Card border="secondary" style = {{width:'23rem', marginBottom: 20}}>    
+                                            <p> {question.optionTwo.text}
+                                                {myVoteOne
+                                                    ?null
+                                                    : <Badge pill variant="warning">Your vote</Badge>}</p>
+                                            <ProgressBar now= {(voteTwo/voteTotal*100)}
+                                                label = {(voteTwo/voteTotal)*100}/> 
+                                                <p>{voteTwo} out of {voteTotal} votes</p>
+                                        </Card>
+                                    </Col>
+                                </Row>               
+                            </Container>                  
+                        <Button className="justify-content-md-center" onClick= {this.handleGoBack}>Back</Button> 
+            
+                        </Card>
+                        
+                    </div>
             )
         }
         else{
@@ -171,7 +177,9 @@ class QuestionPage extends Component{
 
         }
     }
+
 }
+    
 function mapStateToProps({authedUser, questions, users}, props){
     const {id} = props.match.params
 

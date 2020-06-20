@@ -47,7 +47,7 @@ class App extends Component {
                     <PrivateRoute path='/add' exact component={NewQuestion} />
                     <PrivateRoute path='/leaderboard' exact component={Leaderboard}  />
                     <Route path="/login" component={Login}/>
-                   
+                    
                     <Route component={PageNotFound} />
         
                   </Switch>

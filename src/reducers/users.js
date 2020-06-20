@@ -19,7 +19,7 @@ export default function users(state={}, action){
                     ...state,                   
                     [question.author]: {
                         ...state[question.author],
-                        questions: [...state[question.author].questions, action.question.id]
+                        questions: [...state[question.author].questions, action.question.qid]
                     }
                     
                 };

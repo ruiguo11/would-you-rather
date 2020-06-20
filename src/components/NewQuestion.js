@@ -12,21 +12,12 @@ class NewQuestion extends Component{
         toHome: false,
     }
 
-    handleOptionOneChange = (e)=>{
-        const optionOne= e.target.value
-        this.setState(() => ({       
-               optionOne: optionOne,
-            }));
-
+    handleOptionChange = (e) => {
+        this.setState({
+            [e.target.name]: e.target.value
+        });
     }
-    handleOptionTwoChange=(e)=>{
-        const optionTwo = e.target.value
-
-        this.setState(() => ({
-          optionTwo: optionTwo,
-        }));
-
-    }
+    
     handleSubmit = (e) =>{
         e.preventDefault()
     
