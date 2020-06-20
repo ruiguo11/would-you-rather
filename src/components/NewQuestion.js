@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {handleAddQuestion} from '../actions/questions'
 import {Redirect} from 'react-router-dom'
-import {Card, Container, Col, Row, Button} from 'react-bootstrap'
+import {Card, Button} from 'react-bootstrap'
 
 class NewQuestion extends Component{
 
@@ -12,17 +12,26 @@ class NewQuestion extends Component{
         toHome: false,
     }
 
-    handleOptionChange = (e) => {
-        this.setState({
-            [e.target.name]: e.target.value
-        });
+   
+    handleOptionOneChange = (e)=>{
+        const optionOne= e.target.value
+        this.setState(() => ({       
+               optionOne: optionOne,
+            }));
+
     }
-    
+    handleOptionTwoChange=(e)=>{
+        const optionTwo = e.target.value
+
+        this.setState(() => ({
+          optionTwo: optionTwo,
+        }));
+
+    }
+
     handleSubmit = (e) =>{
         e.preventDefault()
-    
-        
-       
+          
         console.log('handleSubmit', this.state.optionOne, this.state.optionTwo)
         this.props.dispatch(handleAddQuestion(this.props.authedUser, this.state.optionOne, this.state.optionTwo) )   
         this.setState(() => ({    
@@ -39,14 +48,13 @@ class NewQuestion extends Component{
             return <Redirect to='/' />
           }
         return(
-
             <div >
                 <Card border="secondary" style = {{width:'25rem'}}>
                 <Card.Header>Create a new Question</Card.Header>
                 <Card.Body>
                     <Card.Title>Would you rather?</Card.Title>
                     <div>
-                            <input
+                        <input
                                 placeholder = "Option One"
                                 value={this.state.optionOne}
                                 onChange = {this.handleOptionOneChange}

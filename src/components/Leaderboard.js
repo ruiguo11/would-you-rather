@@ -74,7 +74,7 @@ function mapStateToProps(users) {
     }))
 
 
-    //console.log('Leaderboard userlist with score',usersWithScores)
+    console.log('Leaderboard userlist with score',usersWithScores)
     return {
         userScores: Object.values(usersWithScores).sort((a, b)=> b.score- a.score)
    
